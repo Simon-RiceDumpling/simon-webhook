@@ -1,0 +1,24 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.84.177.146:3306/b_incent?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&nullCatalogMeansCurrent=true
+    username: root
+    password: "T4JK3b90PYd?hD4Fm?]%"
+  data:
+    redis:
+      host: r-t4nimvqs3hsr60ldttpd.redis.singapore.rds.aliyuncs.com
+      port: 6379
+      password: "7MLZuP-x8J-dH_Z"
+      database: 0
+      repositories:
+        enabled: false
+  servlet:
+    multipart:
+      max-file-size: 5012MB
+      max-request-size: 5012MB
+logging:
+  level:
+    org.apache.kafka: OFF
+    kafka: OFF
+    com.siom.medivh.server.mapper: error
