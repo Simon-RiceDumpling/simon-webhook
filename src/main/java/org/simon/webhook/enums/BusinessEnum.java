@@ -20,7 +20,8 @@ import java.util.Arrays;
 @Getter
 @AllArgsConstructor
 public enum BusinessEnum {
-    HS("HS", "炉", SpringUtils.getBean(LSCheckedService.class), new PushPlusServer[]{SpringUtils.getBean(PushPlusServer.class)}),
+    HS("HS", "炉", SpringUtils.getBean(LSCheckedService.class),
+            new PushPlusServer[]{SpringUtils.getBean(PushPlusServer.class)}),
     ;
     final String code;
     final String description;
