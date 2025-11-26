@@ -1,5 +1,5 @@
 server:
-  port: 8898
+  port: 6687
 spring:
   application:
     name: simon-webhook
