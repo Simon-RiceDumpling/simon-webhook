@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.simon.webhook.busines_server.BusinessCheckedServer;
 import org.simon.webhook.busines_server.impl.LSCheckedService;
 import org.simon.webhook.server.ForwardMessageSendService;
+import org.simon.webhook.server.pushplus.FeiShuMessageSendServer;
 import org.simon.webhook.server.pushplus.PushPlusServer;
 import org.simon.webhook.utils.SpringUtils;
 
@@ -21,7 +22,8 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum BusinessEnum {
     HS("HS", "炉", SpringUtils.getBean(LSCheckedService.class),
-            new PushPlusServer[]{SpringUtils.getBean(PushPlusServer.class)}),
+            new ForwardMessageSendService[]{SpringUtils.getBean(PushPlusServer.class),
+                    SpringUtils.getBean(FeiShuMessageSendServer.class)}),
     ;
     final String code;
     final String description;
