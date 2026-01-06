@@ -45,24 +45,35 @@ public class ExecuteResult<T> {
      * 原始响应体
      */
     private String rawResponse;
-
+    private String headerResponse;
     public static <T> ExecuteResult<T> success(Integer httpCode, T data, String rawResponse) {
+        return success(httpCode, data, rawResponse, null);
+    }
+
+    public static <T> ExecuteResult<T> success(Integer httpCode, T data, String rawResponse, String headerResponse) {
         ExecuteResult<T> result = new ExecuteResult<>();
         result.setHttpCode(httpCode);
         result.setSuccess(true);
         result.setData(data);
         result.setRawResponse(rawResponse);
+        result.setHeaderResponse(headerResponse);
         return result;
     }
 
     public static <T> ExecuteResult<T> error(Integer httpCode, String message, String rawResponse) {
+        return error(httpCode, message, rawResponse, null);
+    }
+
+    public static <T> ExecuteResult<T> error(Integer httpCode, String message, String rawResponse, String headerResponse) {
         ExecuteResult<T> result = new ExecuteResult<>();
         result.setHttpCode(httpCode);
         result.setSuccess(false);
         result.setMessage(message);
         result.setRawResponse(rawResponse);
+        result.setHeaderResponse(headerResponse);
         return result;
     }
+
 
     public Boolean isSuccess() {
         return httpCode == 200 && success;
