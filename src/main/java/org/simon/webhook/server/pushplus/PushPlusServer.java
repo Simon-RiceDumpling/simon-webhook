@@ -3,6 +3,7 @@ package org.simon.webhook.server.pushplus;
 import com.alibaba.fastjson2.JSONObject;
 
 import org.simon.webhook.server.ForwardMessageSendService;
+import org.simon.webhook.utils.DecodeUtils;
 import org.simon.webhook.utils.httputil.SimonHttpClient;
 import org.simon.webhook.vo.ExecuteResult;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ public class PushPlusServer implements ForwardMessageSendService<JSONObject, JSO
                 .param("token", getConfigRefresh().getPushPlusToken())
                 .header("title", "SimonMessage")
                 .param("template", "html")
-                .param("content", params)
+                .param("content", DecodeUtils.isEncoded(params.toJSONString()) ?
+                        DecodeUtils.decoded(params.toJSONString()) : params.toJSONString())
                 .executeOkHttp();
     }
 
