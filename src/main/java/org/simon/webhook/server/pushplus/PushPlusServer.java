@@ -25,8 +25,7 @@ public class PushPlusServer implements ForwardMessageSendService<JSONObject, JSO
                 .param("token", getConfigRefresh().getPushPlusToken())
                 .header("title", "SimonMessage")
                 .param("template", "html")
-                .param("content", DecodeUtils.isEncoded(params.toJSONString()) ?
-                        DecodeUtils.decoded(params.toJSONString()) : params.toJSONString())
+                .param("content", params.getString("content"))
                 .executeOkHttp();
     }
 
