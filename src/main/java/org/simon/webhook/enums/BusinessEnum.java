@@ -22,8 +22,8 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum BusinessEnum {
     HS("HS", "炉", SpringUtils.getBean(LSCheckedService.class),
-            new ForwardMessageSendService[]{SpringUtils.getBean(PushPlusServer.class),
-                    SpringUtils.getBean(FeiShuMessageSendServer.class)}),
+            //new ForwardMessageSendService[]{SpringUtils.getBean(PushPlusServer.class), SpringUtils.getBean(FeiShuMessageSendServer.class)}),
+            new ForwardMessageSendService[]{SpringUtils.getBean(PushPlusServer.class)}),
     ;
     final String code;
     final String description;
