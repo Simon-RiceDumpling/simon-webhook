@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: 47.84.177.146:9092
+    bootstrap-servers: alikafka-post-cn-62l4f4qew006-1-vpc.alikafka.aliyuncs.com:9092,alikafka-post-cn-62l4f4qew006-2-vpc.alikafka.aliyuncs.com:9092,alikafka-post-cn-62l4f4qew006-3-vpc.alikafka.aliyuncs.com:9092
     producer:
       retries: 3
       batch-size: 16384

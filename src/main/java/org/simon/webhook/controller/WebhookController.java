@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.simon.webhook.enums.BusinessEnum;
 import org.simon.webhook.server.ForwardMessageSendService;
 import org.simon.webhook.utils.DecodeUtils;
+import org.simon.webhook.utils.KafkaSendUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class WebhookController {
      */
     @PostMapping("/message/{businessCode}")
     public ResponseEntity<?> message(@RequestBody JSONObject request,
-                                  @PathVariable("businessCode") String businessCode) {
+                                     @PathVariable("businessCode") String businessCode) {
         BusinessEnum business = BusinessEnum.getEnumByCode(businessCode);
         if (business == null || !business.getCheckedServer().check(request)) {
             return ResponseEntity.ok("success");
@@ -57,6 +58,16 @@ public class WebhookController {
         if (value != null && DecodeUtils.looksLikeEncoded(value)) {
             json.put(field, URLDecoder.decode(value, StandardCharsets.UTF_8));
         }
+    }
+
+    @GetMapping("/test")
+    public void test(@RequestParam("bn") String bn, @RequestParam("mn")String mn, @RequestParam("a")String a) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("bsKey", "sub1");
+        jsonObject.put("bn", bn);
+        jsonObject.put("mn", mn);
+        jsonObject.put("a", a);
+        KafkaSendUtils.send("BUSINESS_CONSUME_TOPIC", jsonObject.toJSONString());
     }
 
 
