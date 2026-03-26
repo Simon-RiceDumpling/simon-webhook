@@ -1,4 +1,23 @@
 spring:
+  kafka:
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      max-poll-records: 5000
+      fetch-min-size: 1048576
+      fetch-max-wait: 500ms
+      max-partition-fetch-bytes: 10485760
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        isolation.level: read_committed
+
+    listener:
+      concurrency: 10
+      ack-mode: batch
+      type: batch
+      missing-topics-fatal: false
+      include-delivery-attempt-header: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.84.177.146:3306/b_incent?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&nullCatalogMeansCurrent=true
